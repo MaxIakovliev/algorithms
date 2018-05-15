@@ -4,7 +4,7 @@ class Solution:
         :type strs: List[str]
         :rtype: str
         """
-        if len(strs) == 0:
+        if len(strs)==0 or len(strs[0]) == 0:
             return ''
 
         maxLen=0
