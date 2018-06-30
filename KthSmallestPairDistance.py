@@ -1,10 +1,54 @@
 class Solution:
+    def smallestDistancePair2(self, nums, k):
+        """
+        accepted solution
+        150ms
+        beats 40.7% of solutions
+        """
+        nums.sort()
+        lo=nums[1]-nums[0]
+        n=len(nums)
+        for i in range(1,n-1):
+            lo=min(lo, nums[i+1]-nums[i])
+        
+        hi=nums[n-1]-nums[0]
+        while(lo+1<hi):
+            # mid= lo+((int)((hi-lo)/2))
+            mid=(int)((lo+hi)/2)
+            count=self.countLessThan(nums, mid)
+            if count>self.countLessThan(nums,mid+1) and count==k:
+                return mid
+            if count<k:
+                lo=mid
+            else:
+                hi=mid
+        if self.countLessThan(nums, lo)>=k:
+            return lo
+        return hi
+
+    def countLessThan(self, nums:list, k:int)->(int):
+        right=0
+        count=0
+        n=len(nums)
+        for i in range(n):
+            while(nums[i]-nums[right]>k and right<=i):
+                right+=1
+            count+=(i-right)
+        return count
+            
+    
+
+
+
+    #---------------------------------
     def smallestDistancePair(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: int
         this is accepted solution.
+        700ms
+        beat 6.98% of other solutions
         """
         nums.sort()
         lo = nums[1]-nums[0]
@@ -44,5 +88,6 @@ class Solution:
 
 if __name__ == "__main__":
     c = Solution()
-    print(c.smallestDistancePair([1, 3, 1], 1))
-    print(c.smallestDistancePair([1,6,1], 3)) #expected: 5
+    print(c.smallestDistancePair2([1, 3, 1], 1))
+    print(c.smallestDistancePair2([1,6,1], 3)) #expected: 5
+    print(c.smallestDistancePair2([62,100,4],2)) #expected: 58
