@@ -14,9 +14,7 @@ class Solution:
                 t=a[i][j]
                 a[i][j]=1-a[i][ln-1-j]
                 a[i][ln-1-j]=1-t
-               
                 j+=1
-
         return a
 
 
