@@ -1,4 +1,9 @@
 class Solution:
+    """
+    https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+
+    """
+
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -27,6 +32,15 @@ class Solution:
                 minVal=a[i]
         return maxVal
 
+    
+    def maxProfit3(self, a):
+        t1=0
+        t2=float("-inf")
+        for price in a:
+            t1=max(t1,t2+price)
+            t2=max(t2,-price)
+        return t1
+
 
 
 
@@ -34,8 +48,8 @@ class Solution:
 
 if __name__=="__main__":
     c=Solution()
-    print(c.maxProfit2([7,1,5,3,6,4]))
-    print(c.maxProfit2([7,6,4,3,1]))
-    print(c.maxProfit2([1]))
+    print(c.maxProfit3([7,1,5,3,6,4])) #5
+    print(c.maxProfit3([7,6,4,3,1])) #0
+    print(c.maxProfit3([1])) #0
         
         
