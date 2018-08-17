@@ -25,5 +25,5 @@ class Solution:
             return x1^x2
 if __name__=="__main__":
     c=Solution()
-    print(c.missingNumber2([3,0,1])) #2
-    print(c.missingNumber2([6,4,2,3,5,7,0,1])) #8
+    print(c.missingNumber([3,0,1])) #2
+    print(c.missingNumber([6,4,2,3,5,7,0,1])) #8
