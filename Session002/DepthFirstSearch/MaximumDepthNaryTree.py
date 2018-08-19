@@ -15,11 +15,10 @@ class Solution(object):
         return self.dfs(root,1)
 
     def dfs(self, node, depth):
-        if node.val is None or len(node.children)==0:
+        if node.children is None or len(node.children)==0:
             return depth
-        
+        tmpDepth=depth
         for  i in range(len(node.children)):
-            cur=self.dfs(node.children[i],depth+1)
+            cur=self.dfs(node.children[i],tmpDepth+1)
             depth=max(depth,cur)
-        
         return depth

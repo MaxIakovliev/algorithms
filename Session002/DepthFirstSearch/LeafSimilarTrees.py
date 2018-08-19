@@ -26,7 +26,7 @@ class Solution:
         q=list()
         q.append(root)
         while len(q)>0:
-            cur=q.pop(0)
+            cur=q.pop()
             if cur.left is None and cur.right is None:
                 res.append(cur.val)            
             elif cur.left is not None:
