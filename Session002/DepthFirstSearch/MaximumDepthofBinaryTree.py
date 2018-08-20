@@ -12,6 +12,7 @@ class Solution:
         :rtype: int
         """
         return self.dfs(root,1)
+        
     def dfs(self, node, depth):
         if node is None:
             return depth-1
