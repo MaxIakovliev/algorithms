@@ -13,7 +13,7 @@ class Solution:
         """
         :type preorder: List[int]
         :type inorder: List[int]
-        :rtype: TreeNode
+        :rtype: TreeNode    
         """
         if inorder is None or len(inorder)==0:
             return
