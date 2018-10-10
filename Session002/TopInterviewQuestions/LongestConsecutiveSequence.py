@@ -12,7 +12,6 @@ class Solution:
         while len(u)>0:
             item=u.pop()
             cur=item
-            u.remove(cur)
             count=1
             cur+=1
             while cur in u:
