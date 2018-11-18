@@ -22,6 +22,6 @@ class Solution(object):
             
         self.secondMin=float('inf')
         bfs(root)
-        if self.secondMin is None:
+        if self.secondMin==float('inf'):
             return -1
         return self.secondMin
