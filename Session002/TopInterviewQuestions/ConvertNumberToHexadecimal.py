@@ -1,4 +1,7 @@
 class Solution(object):
+    """
+    https://leetcode.com/problems/convert-a-number-to-hexadecimal/description/
+    """
     def toHex(self, num):
         """
         :type num: int
