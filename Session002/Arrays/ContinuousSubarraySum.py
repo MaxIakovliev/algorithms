@@ -1,0 +1,41 @@
+class Solution(object):
+    """
+    https://leetcode.com/problems/continuous-subarray-sum/description/
+    
+    1. when there are two subsequent 0, whatever k is, we should return true, because 0*k=0;
+    2. when k==0 and there are no two subsequent 0, return false;
+    3. iterate through the array, sum+=nums[i], calculate the mod = sum%k, if the same mod has appeared before when i=j, then sum(nums(j...i])==n*k
+    4. we put m[0]==-1 at the beginning, think nums = {1,1} and k = 2, sum(nums[0...1])%2=0, so this makes it apply the previous statement;
+    5. we need to do the check "if (!( m[0]==-1 && i==0))", in case situations like nums={1} and k=1
+
+    """
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+
+        
+        #Case 1 ----
+        for i in range(len(nums)-1):
+            if nums[i]==nums[i+1]==0:
+                return True
+
+        if k==0: #Case 2
+            return False
+                        
+        m={}
+        m[0]=-1
+        _sum=0
+        for i in range(len(nums)):
+            _sum+=nums[i]
+            _sum%=k
+            if _sum in m:
+                if not (m[0]==-1 and i==0):
+                    return True
+            m[_sum]=i
+        return False
+
+        
+        
