@@ -83,6 +83,34 @@ class Solution:
 
 
 
+
+    def ladderLength4(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
+        available=set(wordList)
+        processed=set()
+        processed.add(beginWord)
+        count=1
+        while endWord not in processed:
+            curAdd=set()
+            for item in processed:
+                for i in range(len(item)):
+                    for ch in range(ord('a'), ord('z')):
+                        newWord=item[:i]+chr(ch)+item[i+1:]
+                        if newWord in available:
+                            curAdd.add(newWord)
+                            available.remove(newWord)
+            if len(curAdd)==0:
+                return 0
+            processed=curAdd
+            count+=1
+        return count
+
+
  
 
 

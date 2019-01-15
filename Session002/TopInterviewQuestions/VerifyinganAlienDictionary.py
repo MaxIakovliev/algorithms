@@ -69,6 +69,35 @@ class Solution:
 
 
 
+    def isAlienSorted3(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
+        d={}
+        for i in range(len(order)):
+            d[order[i]]=i
+        
+        for i in range(len(words)-1):
+            cur=words[i]
+            nxt=words[i+1]
+            ln=max(len(cur),len(nxt))
+            for j in range(ln):
+                if j>=len(nxt):
+                    return False
+                if j>=len(cur):
+                    break
+                if cur[j]!=nxt[j]:
+                    if d[cur[j]]<d[nxt[j]]:
+                        break
+                    else:
+                        return False
+                else:
+                    continue
+        return True
+        
+       
 
 
 
