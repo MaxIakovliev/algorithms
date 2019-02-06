@@ -27,4 +27,16 @@ class Solution:
         self.maxSoFar=max(self.maxSoFar, curSum)
 
         return max(left+node.val, right+node.val,0)
+
+    def maxPathSum2(self, root):
+        def dfs(node):
+            if node is None:
+                return 0
+            left=dfs(node.left)
+            right=dfs(node.right)
+            self.maxSoFar=max(self.maxSoFar, left+right+node.val)
+            return max(left+node.val, right+node.val,0)
+        self.maxSoFar=float('-inf')
+        dfs(root)
+        return self.maxSoFar
         

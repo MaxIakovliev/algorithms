@@ -27,6 +27,27 @@ class Solution:
             return max(left,right)+1
         return 0
 
+
+
+    def longestUnivaluePath2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node, prevVal):
+            if node is None:
+                return 0
+            left=dfs(node.left, node.val)        
+            right=dfs(node.right, node.val)        
+            self.maxVal=max(self.maxVal, left+right)
+            if node.val==prevVal:
+                return max(left, right)+1
+            return 0
+        
+        self.maxVal=0
+        dfs(root,root.val)
+        return self.maxVal
+
  
         
         
