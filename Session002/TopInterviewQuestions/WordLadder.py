@@ -119,4 +119,4 @@ if __name__=="__main__":
     beginWord = "hit"
     endWord = "cog"
     wordList = ["hot","dot","dog","lot","log","cog"]
-    print(c.ladderLength2(beginWord,endWord,wordList))
+    print(c.ladderLength4(beginWord,endWord,wordList))

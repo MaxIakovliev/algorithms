@@ -29,6 +29,25 @@ class Solution:
         return True
 
             
+    def canVisitAllRooms2(self, rooms):
+        keys=list()
+        visited=set()
+        if len(rooms)==0:
+            return True
+        keys.extend(rooms[0])
+        visited.add(0)
+
+        while len(keys)>0:
+            key=keys[0]
+            del keys[0]
+            if key not in visited:
+                visited.add(key)
+                keys.extend(rooms[key])
+
+        return True if len(rooms)==len(visited) else False
+            
+
+
 
 
 
@@ -39,7 +58,8 @@ class Solution:
         
 if __name__=="__main__":
     c=Solution()
-    print(c.canVisitAllRooms([[1],[2],[3],[]])) #True
-    print(c.canVisitAllRooms([[1,3],[3,0,1],[2],[0]])) #False
+    print(c.canVisitAllRooms2([[1],[2],[3],[]])) #True
+    print(c.canVisitAllRooms2([[1,3],[3,0,1],[2],[0]])) #False
+    print(c.canVisitAllRooms2([[2],[],[1]])) #True
 
         
