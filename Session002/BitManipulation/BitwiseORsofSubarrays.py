@@ -36,36 +36,15 @@ class Solution(object):
 
     def subarrayBitwiseORs2(self, A):
         """
+        based on answer here: https://leetcode.com/problems/bitwise-ors-of-subarrays/discuss/165933/Python-Dynamic-programming-solution-with-indepth-explanation-of-intuition.
         :type A: List[int]
         :rtype: int
         """
-        def build_possible_subarrays(a):
-            res=[]
-            start=0
-            dist=1
-            while start<len(a):
-                while dist+start<=len(a):
-                    res.append((start,start+dist))#a[start:start+dist])
-                    dist+=1
-                
-                end=dist
-                dist=1
-                start+=1
-            return res
-
-        data= build_possible_subarrays(A)
-        u=set()
-        for i in range(len(data)):
-            t=None
-            end=data[i][1]
-            for j in range(data[i][0],end):#len(data[i])):
-                if t is None:
-                    t=A[j]#data[i][j]
-                else:
-                    # print(j)
-                    t=t|A[j]#data[i][j]
-            u.add(t)
-        return len(u)
+        array=[set([A[i]]) for i in range(len(A))]
+        for i in range(1, len(A)):
+            for prev_result in array[i-1]:
+                array[i].add(A[i]|prev_result)
+        return len(set.union(*array)) if len(A)>0 else 0
 
 
 

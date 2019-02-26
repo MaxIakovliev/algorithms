@@ -72,8 +72,33 @@ class Solution:
         return res
 
 
+
+    def letterCasePermutation4(self, S):
+        """
+        :type S: str
+        :rtype: List[str]
+        DFS solution
+        """
+        def dfs(word, pos, res):
+            if pos==len(word):
+                res.append(word)
+                return
+            elif ord(word[pos])>= ord('0') and ord(word[pos])<=ord('9'):
+                dfs(word,pos+1,res)
+            else:
+                new_word=word[:pos]+word[pos].lower()+word[pos+1:]
+                dfs(new_word,pos+1,res)
+                new_word=word[:pos]+word[pos].upper()+word[pos+1:]
+                dfs(new_word,pos+1,res)
+            return
+        res=[]
+        dfs(S,0,res)
+        return res
+
+    
+
 if __name__=="__main__":
     c=Solution()
-    print(c.letterCasePermutation3("a1b2"))
+    print(c.letterCasePermutation4("a1b2"))
             
         
