@@ -37,5 +37,31 @@ class Solution(object):
             m[_sum]=i
         return False
 
+    def checkSubarraySum2(self, nums, k):
+        """
+        easy to understand solution
+        """
+        if not nums or len(nums)==0:
+            return False
+
+        presum=[0]*(len(nums)+1)
+        for i in range(1,len(nums)+1):
+            presum[i]=presum[i-1]+nums[i-1]
+        
+        for i in range(len(nums)):
+            for j in range(i+2,len(nums)+1):
+                if k==0:
+                    if presum[j]-presum[i]==0:
+                        return True
+                elif (presum[j]-presum[i])%k==0:
+                    return True
+        return False
+
+if __name__ == "__main__":
+    c=Solution()
+    print(c.checkSubarraySum2([0,0],0))
+
+        
+
         
         

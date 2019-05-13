@@ -21,6 +21,7 @@ class Solution:
             for l in left:
                 for r in right:
                     node=TreeNode(0)
+                    
                     node.left=l
                     node.right=r
                     res.append(node)
