@@ -41,6 +41,23 @@ class Solution:
             t2=max(t2,-price)
         return t1
 
+    #DP solution
+    """
+    solution:
+    https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/39112/Why-is-this-problem-tagged-with-"Dynamic-programming"/36893
+    """
+    def maxProfit4(self, prices):
+        if prices is None or len(prices)==0:
+            return 0        
+        dp=[0 for _ in range(len(prices))]
+        min_price=prices[0]
+        for i in range(1,len(prices)):
+            dp[i]=max(dp[i-1], prices[i]-min_price)
+            min_price=min(min_price,prices[i])
+        return dp[-1]
+
+
+
 
 
 

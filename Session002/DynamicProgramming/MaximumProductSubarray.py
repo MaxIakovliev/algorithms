@@ -36,14 +36,33 @@ class Solution:
         
         return res
 
+    def maxProductDP_version(self, nums):
+        n=len(nums)
+        f=[0]*2
+        f[0],f[1]=nums[0],nums[0]
+        max_val=nums[0]
+        for i in range(1, n):
+            ff=[0]*2
+            if nums[i]==0:
+                ff[0],ff[1]=0,0
+            elif nums[i]>0:
+                ff[0]=max(nums[i],nums[i]*f[0])
+                ff[1]=min(nums[i],nums[i]*f[1])
+            else:
+                ff[0]=max(nums[i],nums[i]*f[1])
+                ff[1]=min(nums[i],nums[i]*f[0])
+            max_val=max(max_val,ff[0])
+            f=ff
+        return max_val
+
 
 
 
 if __name__ =="__main__":
     c=Solution()
-    print(c.maxProductOptimized([2,3,-2,4]))
-    print(c.maxProductOptimized([-2,0,-1]))
-    print(c.maxProductOptimized([-2,3,-4]))
+    print(c.maxProductDP_version([2,3,-2,4])) #6
+    print(c.maxProductDP_version([-2,0,-1]))
+    print(c.maxProductDP_version([-2,3,-4]))
             
 
             
